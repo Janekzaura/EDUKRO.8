@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Motywy ucznia ze sklepu EDUKRO: tło, akcent, karty, kolor tekstu, czcionki.
+   Zmienne ustawia public/js/theme.js na <html>; tu są tylko efekty specjalne.
+   ========================================================================== */
+
+@font-face { font-family: 'Schola'; src: url('/fonts/schola-400.woff') format('woff'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Schola'; src: url('/fonts/schola-700.woff') format('woff'); font-weight: 600 700; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('/fonts/poppins-400.woff') format('woff'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('/fonts/poppins-600.woff') format('woff'); font-weight: 500 700; font-display: swap; }
+@font-face { font-family: 'Adventor'; src: url('/fonts/adventor-400.woff') format('woff'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Adventor'; src: url('/fonts/adventor-700.woff') format('woff'); font-weight: 600 700; font-display: swap; }
+@font-face { font-family: 'Lora'; src: url('/fonts/lora-400.woff') format('woff'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Lora'; src: url('/fonts/lora-700.woff') format('woff'); font-weight: 600 700; font-display: swap; }
+@font-face { font-family: 'Cursor'; src: url('/fonts/cursor-400.woff') format('woff'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Cursor'; src: url('/fonts/cursor-700.woff') format('woff'); font-weight: 600 700; font-display: swap; }
+@font-face { font-family: 'Chorus'; src: url('/fonts/chorus-400.woff') format('woff'); font-weight: 400 700; font-display: swap; }
+
+/* nagłówki kaligraficzne są drobniejsze – powiększamy je odrobinę */
+.font-chorus h1, .font-chorus h2, .font-chorus h3 { font-size-adjust: .5; letter-spacing: .01em; }
+.font-cursor body { letter-spacing: -.01em; }
+
+/* ---------- Tło ---------- */
+.theme-bg .backdrop { background: radial-gradient(120% 90% at 50% 0%, var(--ink-700) 0%, var(--ink-900) 55%, var(--ink-950) 100%); }
+.theme-bg .backdrop__shade { background-color: rgb(var(--ink-rgb) / .62); }
+.theme-bg .is-inner .backdrop__photo, .theme-bg.is-inner .backdrop__photo { opacity: .55; }
+
+.bg-fx-gold .backdrop::after, .bg-fx-silver .backdrop::after {
+  content: ''; position: absolute; inset: -40%; pointer-events: none;
+  background: linear-gradient(115deg, transparent 42%, rgb(255 226 150 / .07) 50%, transparent 58%);
+  animation: sheen 11s linear infinite;
+}
+.bg-fx-silver .backdrop::after { background: linear-gradient(115deg, transparent 42%, rgb(235 242 255 / .07) 50%, transparent 58%); }
+@keyframes sheen { from { transform: translateX(-30%); } to { transform: translateX(30%); } }
+
+.bg-fx-rainbow .backdrop__photo { opacity: .2 !important; }
+.bg-fx-rainbow .backdrop::after {
+  content: ''; position: absolute; inset: -25%; pointer-events: none; opacity: .9;
+  background:
+    radial-gradient(38% 46% at 22% 30%, hsl(285 70% 24%), transparent 70%),
+    radial-gradient(42% 42% at 78% 22%, hsl(195 75% 20%), transparent 70%),
+    radial-gradient(46% 50% at 62% 78%, hsl(335 70% 22%), transparent 70%),
+    radial-gradient(40% 40% at 28% 84%, hsl(145 60% 18%), transparent 70%),
+    radial-gradient(36% 36% at 50% 50%, hsl(45 70% 18%), transparent 70%);
+  filter: blur(28px) saturate(1.2);
+  animation: liquid 22s ease-in-out infinite alternate, hue 30s linear infinite;
+}
+@keyframes liquid {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  33% { transform: translate(4%, -3%) rotate(8deg) scale(1.08); }
+  66% { transform: translate(-3%, 4%) rotate(-6deg) scale(1.03); }
+  100% { transform: translate(2%, 2%) rotate(4deg) scale(1.1); }
+}
+@keyframes hue { to { filter: blur(28px) saturate(1.2) hue-rotate(360deg); } }
+
+/* ---------- Akcent ---------- */
+.acc-fx-gold .btn--primary, .acc-fx-silver .btn--primary, .acc-fx-rainbow .btn--primary {
+  background-size: 300% 100%; animation: flow-x 6s linear infinite; border: 0;
+}
+.acc-fx-gold .btn--primary { background-image: linear-gradient(100deg, #9A6F1B, #F3C752 22%, #FFF1B8 34%, #E2B33F 48%, #9A6F1B 62%, #F3C752 80%, #9A6F1B); color: #241703; }
+.acc-fx-silver .btn--primary { background-image: linear-gradient(100deg, #7D8796, #D5DCE6 22%, #FFFFFF 34%, #B9C3D0 48%, #7D8796 62%, #D5DCE6 80%, #7D8796); color: #151A22; }
+.acc-fx-rainbow .btn--primary { background-image: linear-gradient(90deg, #FF6B9D, #FFB86B, #F7F06B, #6BFFB8, #6BC8FF, #C56BFF, #FF6B9D); color: #16101F; }
+@keyframes flow-x { to { background-position: 300% 0; } }
+
+/* ---------- Karty pytań i slajdów ---------- */
+.card-fx-gold .q-card-play, .card-fx-silver .q-card-play, .card-fx-rainbow .q-card-play,
+.card-fx-gold .slide-card, .card-fx-silver .slide-card, .card-fx-rainbow .slide-card {
+  border: 2px solid transparent;
+  background: linear-gradient(170deg, var(--card-bg), rgb(var(--ink-rgb) / .96)) padding-box, var(--card-border) border-box;
+  background-size: 100% 100%, 300% 300%;
+  animation: card-in .55s var(--ease-drop) both, flow-xy 9s linear infinite;
+}
+.card-fx-gold { --card-border: linear-gradient(135deg, #8A6417, #F3C752, #FFF1B8, #E2B33F, #8A6417, #F3C752); }
+.card-fx-silver { --card-border: linear-gradient(135deg, #6F7886, #D5DCE6, #FFFFFF, #B9C3D0, #6F7886, #D5DCE6); }
+.card-fx-rainbow { --card-border: linear-gradient(135deg, #FF6B9D, #FFB86B, #F7F06B, #6BFFB8, #6BC8FF, #C56BFF, #FF6B9D); }
+@keyframes flow-xy { to { background-position: 0 0, 300% 300%; } }
+
+/* ---------- Tekst ---------- */
+.text-fx-glow h1, .text-fx-glow h2, .text-fx-glow h3, .text-fx-glow .q-prompt, .text-fx-glow .slide-title {
+  text-shadow: 0 0 6px rgb(var(--paper-rgb) / .75), 0 0 18px rgb(var(--paper-rgb) / .45), 0 0 34px rgb(var(--paper-rgb) / .25);
+}
+.text-fx-glow body { text-shadow: 0 0 5px rgb(var(--paper-rgb) / .28); }
+.text-fx-gold h1, .text-fx-gold h2, .text-fx-gold .q-prompt, .text-fx-gold .slide-title {
+  background: linear-gradient(180deg, #FFF1B8 0%, #F5D27A 45%, #C8952F 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-fx-rainbow .backdrop::after, .bg-fx-gold .backdrop::after, .bg-fx-silver .backdrop::after { animation: none; }
+}

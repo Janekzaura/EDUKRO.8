@@ -1,0 +1,15 @@
+{
+  "name": "edukro",
+  "version": "0.7.1",
+  "private": true,
+  "description": "EDUKRO – aplikacja edukacyjna SP im. Polskich Noblistów w Nowym Folwarku",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node server/check.js && node --disable-warning=ExperimentalWarning server/index.js",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js",
+    "logo": "python3 tools/build_logo.py"
+  }
+}

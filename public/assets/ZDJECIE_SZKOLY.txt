@@ -1,0 +1,6 @@
+Tutaj umieść zdjęcie szkoły jako plik:  szkola.jpg
+
+• Najlepiej poziome zdjęcie, min. 2000 px szerokości, JPG o rozmiarze do ~600 KB.
+• Plik zostanie wyświetlony jako tło ekranu powitalnego (i delikatnie rozmyty na pozostałych ekranach).
+• Który fragment zdjęcia ma być zawsze widoczny, ustawisz w .env:  SCHOOL_PHOTO_FOCUS=50% 45%
+• Inna nazwa lub format (np. .webp): ustaw SCHOOL_PHOTO=assets/twoj-plik.webp w .env.
